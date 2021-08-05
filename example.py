@@ -1,6 +1,8 @@
 '''
 A simple example estimating a status order on a hypothetical 50-person community.
-Note that even this simple example will take a long time to finish.
+Note that even this simple example will take a long time to finish (possibly hours,
+depending on the number of processors).
+It will launch 15 parallel processes, so it will  use 100% CPU on most computers.
 '''
 
 from OrderEstimator import OrderEstimator
@@ -67,9 +69,9 @@ if __name__ == '__main__':
     db = 'example_trace.sqlite'
     
 
-    # Run 5 parallel chains, each with 5,000 post-burnin samples,
+    # Run 15 parallel chains, each with 15,000 post-burnin samples,
     # thin to every 20th sample
     oe.sample_mcmc_parallel(
-        niter = 10000, burnin_isolated= 1000, burnin_shared = 4000,
+        niter = 20000, burnin_isolated= 1000, burnin_shared = 4000,
         thin=20,updateEvery=60,hist_size=80,
-        nChains=5,db=db, verbose=True)
+        nChains=15,db=db, verbose=True)
